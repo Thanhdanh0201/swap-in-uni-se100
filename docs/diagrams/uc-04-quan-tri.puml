@@ -1,0 +1,38 @@
+@startuml uc-04-quan-tri
+!include _style.iuml
+title Phân rã: Quản trị
+
+actor "Admin" as Admin
+
+rectangle "SwapInUni" {
+  usecase "UC21 Kiểm duyệt bài\n(bài bán, tin cần mua)" as UC21
+  usecase "Duyệt bài" as UC21a
+  usecase "Từ chối bài\n(kèm lý do)" as UC21b
+  usecase "UC22 Xử lý báo cáo" as UC22
+  usecase "Bỏ qua báo cáo" as UC22a
+  usecase "Gỡ bài vi phạm" as UC22b
+  usecase "Khóa / mở khóa\ntài khoản" as LOCK
+  usecase "UC23 Quản lý\nngười dùng" as UC23
+  usecase "Cấp / thu hồi\nquyền admin" as UC23a
+  usecase "UC24 Quản lý danh mục" as UC24
+  usecase "UC25 Quản lý\nđiểm giao nhận" as UC25
+  usecase "UC26 Xem thống kê" as UC26
+}
+
+Admin -- UC21
+Admin -- UC22
+Admin -- UC23
+Admin -- UC24
+Admin -- UC25
+Admin -- UC26
+
+UC21 <.. UC21a : <<extend>>
+UC21 <.. UC21b : <<extend>>
+UC22 <.. UC22a : <<extend>>
+UC22 <.. UC22b : <<extend>>
+UC22 <.. LOCK : <<extend>>
+UC23 <.. LOCK : <<extend>>
+UC23 <.. UC23a : <<extend>>
+
+
+@enduml

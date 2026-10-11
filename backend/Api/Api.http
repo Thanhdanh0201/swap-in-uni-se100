@@ -1,0 +1,25 @@
+@host = http://localhost:5180
+# Lấy access token: đăng nhập ở frontend, mở DevTools > Application > Local Storage > sb-...-auth-token
+@token = 
+
+GET {{host}}/api/categories
+
+###
+GET {{host}}/api/listings?q=ao khoac&sort=price_asc
+
+###
+GET {{host}}/api/me
+Authorization: Bearer {{token}}
+
+###
+POST {{host}}/api/listings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Giáo trình Nhập môn CNPM",
+  "description": "Còn mới 90%, có ghi chú bút chì.",
+  "price": 50000,
+  "condition": "good",
+  "categoryId": "00000000-0000-0000-0000-000000000000"
+}

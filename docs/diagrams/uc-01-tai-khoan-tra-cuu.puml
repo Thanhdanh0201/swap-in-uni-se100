@@ -1,0 +1,38 @@
+@startuml uc-01-tai-khoan-tra-cuu
+!include _style.iuml
+title Phân rã: Tài khoản & tra cứu
+
+actor "Khách" as Guest
+actor "Sinh viên" as Student
+actor "Google /\nSupabase Auth" as Auth <<hệ thống>>
+Guest <|-- Student
+
+rectangle "SwapInUni" {
+  usecase "UC01 Đăng nhập\nbằng email trường" as UC01
+  usecase "Đăng nhập bằng Google" as UC01a
+  usecase "Đăng nhập bằng\nemail + mật khẩu" as UC01b
+  usecase "UC02 Đăng xuất" as UC02
+  usecase "UC03 Cập nhật hồ sơ" as UC03
+
+  usecase "UC04 Xem danh sách\nsản phẩm" as UC04
+  usecase "UC05 Tìm kiếm & lọc\n(tên, danh mục, giá,\ntình trạng, sắp xếp)" as UC05
+  usecase "UC06 Xem chi tiết\nsản phẩm" as UC06
+  usecase "UC07 Xem hồ sơ\nngười bán" as UC07
+  usecase "UC08 Xem tin cần mua" as UC08
+}
+
+Guest -- UC01
+Guest -- UC04
+Guest -- UC06
+Guest -- UC07
+Guest -- UC08
+Student -- UC02
+Student -- UC03
+
+UC01 <|-- UC01a
+UC01 <|-- UC01b
+UC01a -- Auth
+UC01b -- Auth
+UC04 <.. UC05 : <<extend>>
+
+@enduml

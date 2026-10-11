@@ -1,0 +1,35 @@
+@startuml uc-02-mua
+!include _style.iuml
+title Phân rã: Mua
+
+actor "Người mua" as Buyer
+actor "Người bán" as Seller
+
+rectangle "SwapInUni" {
+  usecase "UC09 Nhắn tin" as UC09
+  usecase "UC12 Lưu / bỏ lưu\nyêu thích" as UC12
+  usecase "UC13 Gửi yêu cầu mua" as UC13
+  usecase "Chọn điểm\ngiao nhận an toàn" as PICK
+  usecase "UC14 Hủy yêu cầu mua" as UC14
+  usecase "UC15 Đánh giá\nsau giao dịch" as UC15
+  usecase "UC16 Đăng tin cần mua" as UC16
+  usecase "UC17 Quản lý\ntin cần mua" as UC17
+  usecase "Sửa tin" as UC17a
+  usecase "Đóng tin\n(đã mua được)" as UC17b
+}
+
+Buyer -- UC09
+Buyer -- UC12
+Buyer -- UC13
+Buyer -- UC14
+Buyer -- UC15
+Buyer -- UC16
+Buyer -- UC17
+UC09 -- Seller
+UC15 -- Seller
+
+UC13 <.. PICK : <<extend>>
+UC17 <.. UC17a : <<extend>>
+UC17 <.. UC17b : <<extend>>
+
+@enduml

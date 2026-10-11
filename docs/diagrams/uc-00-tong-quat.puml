@@ -1,0 +1,86 @@
+@startuml uc-00-tong-quat
+' Sơ đồ use case tổng quát. Chi tiết include/extend ở các sơ đồ phân rã uc-01..uc-04.
+!include _style.iuml
+title SwapInUni – Sơ đồ use case tổng quát
+
+actor "Khách" as Guest
+actor "Sinh viên" as Student
+actor "Người mua" as Buyer
+actor "Người bán" as Seller
+actor "Admin" as Admin
+actor "Google /\nSupabase Auth" as Auth <<hệ thống>>
+
+Guest <|-- Student
+Student <|-- Buyer
+Student <|-- Seller
+Student <|-- Admin
+
+rectangle "SwapInUni" {
+  package "Tài khoản & tra cứu" {
+    usecase "UC01 Đăng nhập\nbằng email trường" as UC01
+    usecase "UC04 Xem danh sách\nsản phẩm" as UC04
+    usecase "UC06 Xem chi tiết\nsản phẩm" as UC06
+    usecase "UC07 Xem hồ sơ\nngười bán" as UC07
+    usecase "UC08 Xem tin cần mua" as UC08
+    usecase "UC02 Đăng xuất" as UC02
+    usecase "UC03 Cập nhật hồ sơ" as UC03
+  }
+  package "Tương tác chung" {
+    usecase "UC09 Nhắn tin" as UC09
+    usecase "UC10 Báo cáo vi phạm" as UC10
+    usecase "UC11 Xem thông báo" as UC11
+    usecase "UC15 Đánh giá\nsau giao dịch" as UC15
+  }
+  package "Mua" {
+    usecase "UC12 Lưu yêu thích" as UC12
+    usecase "UC13 Gửi yêu cầu mua" as UC13
+    usecase "UC14 Hủy yêu cầu mua" as UC14
+    usecase "UC16 Đăng tin cần mua" as UC16
+    usecase "UC17 Quản lý\ntin cần mua" as UC17
+  }
+  package "Bán" {
+    usecase "UC18 Đăng bài bán" as UC18
+    usecase "UC19 Quản lý\nbài đăng của tôi" as UC19
+    usecase "UC20 Xử lý\nyêu cầu mua" as UC20
+  }
+  package "Quản trị" {
+    usecase "UC21 Kiểm duyệt bài" as UC21
+    usecase "UC22 Xử lý báo cáo" as UC22
+    usecase "UC23 Quản lý\nngười dùng" as UC23
+    usecase "UC24 Quản lý danh mục" as UC24
+    usecase "UC25 Quản lý\nđiểm giao nhận" as UC25
+    usecase "UC26 Xem thống kê" as UC26
+  }
+}
+
+Guest -- UC01
+Guest -- UC04
+Guest -- UC06
+Guest -- UC07
+Guest -- UC08
+UC01 -- Auth
+
+Student -- UC02
+Student -- UC03
+Student -- UC09
+Student -- UC10
+Student -- UC11
+Student -- UC15
+
+Buyer -- UC12
+Buyer -- UC13
+Buyer -- UC14
+Buyer -- UC16
+Buyer -- UC17
+
+Seller -- UC18
+Seller -- UC19
+Seller -- UC20
+
+Admin -- UC21
+Admin -- UC22
+Admin -- UC23
+Admin -- UC24
+Admin -- UC25
+Admin -- UC26
+@enduml

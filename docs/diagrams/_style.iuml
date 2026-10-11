@@ -1,0 +1,31 @@
+' Style dùng chung cho mọi use case diagram của SwapInUni.
+!pragma layout smetana
+left to right direction
+skinparam shadowing false
+skinparam defaultFontName "Helvetica"
+skinparam defaultFontSize 13
+skinparam ArrowColor #3A4A6B
+skinparam ActorBorderColor #0041D9
+skinparam ActorBackgroundColor #FFFFFF
+skinparam ActorFontStyle bold
+skinparam usecase {
+  BackgroundColor #EEF3FF
+  BorderColor #0041D9
+  FontColor #121722
+}
+skinparam rectangle {
+  BorderColor #0B2E6E
+  BackgroundColor #FFFFFF
+  FontStyle bold
+  FontSize 15
+}
+skinparam package {
+  BorderColor #98A1B3
+  BackgroundColor #F4F6FA
+  FontColor #4B5468
+  FontStyle bold
+}
+skinparam note {
+  BackgroundColor #FFF4E0
+  BorderColor #9A5B00
+}

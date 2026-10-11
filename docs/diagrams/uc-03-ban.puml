@@ -1,0 +1,48 @@
+@startuml uc-03-ban
+!include _style.iuml
+title Phân rã: Bán
+
+actor "Người bán" as Seller
+actor "Người mua" as Buyer
+
+rectangle "SwapInUni" {
+  usecase "UC18 Đăng bài bán" as UC18
+  usecase "Tải ảnh sản phẩm\n(1–6 ảnh)" as IMG
+  usecase "UC19 Quản lý\nbài đăng của tôi" as UC19
+  usecase "Sửa bài\n(gửi duyệt lại)" as UC19a
+  usecase "Ẩn / hiện bài" as UC19b
+  usecase "Đánh dấu đã bán" as UC19c
+  usecase "UC20 Xử lý\nyêu cầu mua" as UC20
+  usecase "Chấp nhận yêu cầu" as UC20a
+  usecase "Từ chối yêu cầu" as UC20b
+  usecase "Xác nhận hoàn tất" as UC20c
+  usecase "Hủy giao dịch" as UC20d
+  usecase "UC09 Nhắn tin" as UC09
+}
+
+Seller -- UC18
+Seller -- UC19
+Seller -- UC20
+Seller -- UC09
+UC09 -- Buyer
+
+UC18 ..> IMG : <<include>>
+UC19 <.. UC19a : <<extend>>
+UC19 <.. UC19b : <<extend>>
+UC19 <.. UC19c : <<extend>>
+UC20 <.. UC20a : <<extend>>
+UC20 <.. UC20b : <<extend>>
+UC20 <.. UC20c : <<extend>>
+UC20 <.. UC20d : <<extend>>
+
+
+note right of UC20a
+  Bài chuyển "Đang giao dịch".
+  Mỗi bài chỉ 1 yêu cầu được chấp nhận.
+end note
+
+note right of UC20c
+  Bài chuyển "Đã bán";
+  các yêu cầu khác tự bị từ chối.
+end note
+@enduml
