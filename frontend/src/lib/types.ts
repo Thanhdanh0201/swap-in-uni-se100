@@ -35,3 +35,6 @@ export type ListingSummary = {
 }
 
 export type Category = { id: string; name: string; slug: string }
+
+// Trang kết quả (Shared/Responses PagedResult của backend).
+export type Paged<T> = { items: T[]; total: number; page: number; pageSize: number }

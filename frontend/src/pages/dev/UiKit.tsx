@@ -1,9 +1,12 @@
 import { ChatCircleDots } from '@phosphor-icons/react'
+import type { UploadFile } from 'antd'
+import { useState } from 'react'
 import { Link } from 'react-router'
 import { AntdShell } from '../../app/AntdShell'
 import { ConditionTag } from '../../components/ConditionTag'
 import { FilterBar } from '../../components/FilterBar'
 import { ImageGallery } from '../../components/ImageGallery'
+import { ImageUploader } from '../../components/ImageUploader'
 import { ListingCard } from '../../components/ListingCard'
 import { PriceTag } from '../../components/PriceTag'
 import { EmptyState, ErrorState, ListingGridSkeleton } from '../../components/States'
@@ -27,6 +30,7 @@ export function HydrateFallback() {
 export const meta = () => noIndex('UI kit')
 
 export default function UiKit() {
+  const [files, setFiles] = useState<UploadFile[]>([])
   const publicListings = MOCK_LISTINGS.filter((l) => l.status !== 'pending')
   return (
     <AntdShell>
@@ -83,6 +87,12 @@ export default function UiKit() {
           <div style={{ maxWidth: 240 }}>
             <ImageGallery images={[]} title="Không có ảnh" />
           </div>
+        </section>
+
+        <section className="kit__section">
+          <h2>Chọn ảnh khi đăng bán (ImageUploader)</h2>
+          <p className="muted">JPG/PNG/WebP, tối đa 5 MB, 6 ảnh. Bấm ảnh để xem trước.</p>
+          <ImageUploader value={files} onChange={setFiles} />
         </section>
 
         <section className="kit__section">

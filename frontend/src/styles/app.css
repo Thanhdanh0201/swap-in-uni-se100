@@ -256,3 +256,6 @@
   .listing-card, .listing-card:hover, .listing-card:active { transition: none; transform: none; }
   .skeleton { animation: none; }
 }
+
+/* ImageUploader */
+.uploader__add { display: grid; justify-items: center; gap: var(--space-1); color: var(--color-text-subtle); font-size: var(--text-sm); }

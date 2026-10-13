@@ -26,3 +26,34 @@ export const MOCK_LISTINGS: ListingSummary[] = [
 ]
 
 export const MOCK_GALLERY = ['book', 'book-2', 'book-3', 'book-4'].map(img)
+
+export type MeetingPoint = { id: string; name: string; description: string; suggestedHours: string; isActive: boolean }
+
+let points: MeetingPoint[] = [
+  { id: 'm1', name: 'Thư viện - sảnh tầng 1', description: 'Cạnh quầy gửi đồ, có camera', suggestedHours: '7h30 - 20h', isActive: true },
+  { id: 'm2', name: 'Căng tin khu A', description: 'Bàn gần cửa ra bãi xe', suggestedHours: '10h - 14h', isActive: true },
+  { id: 'm3', name: 'Sảnh tòa B', description: 'Trước phòng bảo vệ', suggestedHours: '7h - 21h', isActive: true },
+  { id: 'm4', name: 'Cổng KTX khu B', description: 'Đang sửa, tạm không dùng', suggestedHours: '17h - 21h', isActive: false },
+]
+
+// Service giả cho CrudPage: lưu trong bộ nhớ, trễ 300ms cho giống gọi API.
+const wait = () => new Promise((r) => setTimeout(r, 300))
+export const mockMeetingPointService = {
+  async list({ page, pageSize, keyword }: { page: number; pageSize: number; keyword?: string }) {
+    await wait()
+    const all = keyword ? points.filter((p) => p.name.toLowerCase().includes(keyword.toLowerCase())) : points
+    return { items: all.slice((page - 1) * pageSize, page * pageSize), total: all.length, page, pageSize }
+  },
+  async create(values: Partial<MeetingPoint>) {
+    await wait()
+    points = [...points, { id: `m${Date.now()}`, name: '', description: '', suggestedHours: '', isActive: true, ...values }]
+  },
+  async update(id: string, values: Partial<MeetingPoint>) {
+    await wait()
+    points = points.map((p) => (p.id === id ? { ...p, ...values } : p))
+  },
+  async remove(id: string) {
+    await wait()
+    points = points.filter((p) => p.id !== id)
+  },
+}

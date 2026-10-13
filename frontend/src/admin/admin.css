@@ -20,3 +20,8 @@
 @media (max-width: 767px) {
   .admin__user-name, .admin__brand-tag { display: none; }
 }
+
+/* FilterPanel: lưới tự xuống dòng, nút Đặt lại thẳng hàng với ô lọc. */
+.filter-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 var(--space-3); }
+.filter-form .ant-form-item { margin-bottom: var(--space-3); }
+.filter-form__reset { align-self: end; }

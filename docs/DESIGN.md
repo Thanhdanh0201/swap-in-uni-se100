@@ -136,6 +136,10 @@ Thông số định hướng (taste skill): `DESIGN_VARIANCE 4` (lưới đều,
 | `BottomNav` | 2 | `layouts/BottomNav.tsx` | Mobile |
 | `AdminLayout` | 1 | `admin/AdminLayout.tsx` | `/admin/*` |
 | `AdminPage`, `DetailDrawer`, `ActionButtons` | 1 | `admin/*.tsx` | Mọi trang admin |
+| `FilterPanel` (+ `filters.ts`) | 1 | `admin/FilterPanel.tsx` | Bộ lọc khai báo bằng field (text, số, chọn, chọn nhiều, khoảng ngày), lọc ngay, lưu trên URL |
+| `CrudPage` | 1 | `admin/CrudPage.tsx` | Danh mục, Điểm giao nhận: bảng + tìm kiếm + Drawer thêm/sửa + xóa có xác nhận |
+| `RemoteSelect` | 1 | `admin/RemoteSelect.tsx` | Chọn người dùng / danh mục bằng tìm kiếm từ server, giá trị là id |
+| `ImageUploader` | 2 | `components/ImageUploader.tsx` | Form đăng bán: lưới ảnh, xem trước, kiểm tra JPG/PNG/WebP ≤ 5 MB, tối đa 6 ảnh |
 | `KpiTile` | 1 | `admin/KpiTile.tsx` | Tổng quan |
 
 Mọi component có trang xem thử: `/dev/ui` (người dùng) và `/dev/admin` (admin), dùng dữ liệu giả, chỉ bật khi `NODE_ENV !== 'production'`.
