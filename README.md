@@ -13,7 +13,6 @@ Ai cũng đăng ký được; tài khoản email trường (`@gm.uit.edu.vn`) c�
 
 ## Tổng quan tech stack
 
-Stack dùng lại từ dự án **CRM UIT** để nhóm khỏi phải học và cài thêm.
 
 | Tầng | Công nghệ | Vai trò |
 |---|---|---|
