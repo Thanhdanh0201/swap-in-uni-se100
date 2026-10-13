@@ -1,6 +1,6 @@
 # Việc cần làm
 
-> Cập nhật: 2026-10-11. Đánh dấu `[x]` khi xong. Mã UC tham chiếu [USE_CASES.md](USE_CASES.md).
+> Cập nhật: 2026-10-13. Đánh dấu `[x]` khi xong. Mã UC tham chiếu [USE_CASES.md](USE_CASES.md). Lịch theo sprint: [PLAN.md](PLAN.md).
 
 ## Đã có (khung)
 
@@ -19,7 +19,7 @@
 - [ ] Duyệt ERD ở [DATABASE.md](DATABASE.md) và các quyết định ở [DECISIONS.md](DECISIONS.md).
 - [ ] Chia việc, tạo board (Jira/Trello/GitHub Projects), quy ước branch và PR.
 - [ ] Viết SRS, làm wireframe Figma cho các màn chính.
-- [ ] Tạo repo Git và push khung lên.
+- [x] Tạo repo Git và push khung lên (github.com/Thanhdanh0201/swap-in-uni-se100).
 
 ## Giai đoạn 1 – Hạ tầng (tuần 2)
 

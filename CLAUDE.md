@@ -1,7 +1,7 @@
 # SwapInUni – Chợ đồ cũ sinh viên UIT
 
 Tổng quan, tech stack, cấu trúc: @README.md
-Việc cần làm: `docs/TODO.md`. Chạy project: `docs/GETTING_STARTED.md`. Migration: `docs/MIGRATIONS.md`. Skill: `docs/SKILLS.md`. Use case: `docs/USE_CASES.md`. Schema đề xuất: `docs/DATABASE.md`. Quyết định: `docs/DECISIONS.md`.
+Kế hoạch sprint: `docs/PLAN.md`. Việc cần làm: `docs/TODO.md`. Chạy project: `docs/GETTING_STARTED.md`. Migration: `docs/MIGRATIONS.md`. Skill: `docs/SKILLS.md`. Use case: `docs/USE_CASES.md`. Schema đề xuất: `docs/DATABASE.md`. Quyết định: `docs/DECISIONS.md`.
 Code backend theo `backend/AGENTS.md`.
 
 ## Ngôn ngữ

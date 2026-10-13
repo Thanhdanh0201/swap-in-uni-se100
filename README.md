@@ -79,6 +79,7 @@ SE100/
 │   ├── SKILLS.md              ← dùng skill Claude Code
 │   ├── USE_CASES.md           ← tác nhân, use case, diagram, đặc tả, luồng trạng thái
 │   ├── DATABASE.md            ← ERD đề xuất
+│   ├── PLAN.md                ← kế hoạch 5 sprint, phân vai, mốc nộp
 │   ├── TODO.md                ← việc cần làm theo giai đoạn
 │   ├── DECISIONS.md           ← quyết định thiết kế (đề xuất, chờ nhóm duyệt)
 │   └── diagrams/              ← use case diagram PlantUML (.puml) + ảnh png/ svg/ cho báo cáo
@@ -130,6 +131,7 @@ Danh sách việc tiếp theo: xem [docs/TODO.md](docs/TODO.md).
 | Dùng skill Claude Code (caveman, ponytail, taste) | [docs/SKILLS.md](docs/SKILLS.md) |
 | Use case, diagram, luồng trạng thái | [docs/USE_CASES.md](docs/USE_CASES.md) |
 | Schema đề xuất | [docs/DATABASE.md](docs/DATABASE.md) |
+| Kế hoạch sprint tới 28/12 | [docs/PLAN.md](docs/PLAN.md) |
 | Việc cần làm | [docs/TODO.md](docs/TODO.md) |
 | Quyết định thiết kế | [docs/DECISIONS.md](docs/DECISIONS.md) |
 
