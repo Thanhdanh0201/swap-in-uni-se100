@@ -1,4 +1,5 @@
 import { AntdShell } from '../app/AntdShell'
+import { BrandLoader } from '../brand/Mascot'
 import { RequireAuth } from '../lib/auth'
 import { noIndex } from '../lib/seo'
 import { AdminLayout } from './AdminLayout'
@@ -9,7 +10,7 @@ export async function clientLoader() {
 clientLoader.hydrate = true as const
 
 export function HydrateFallback() {
-  return <p className="container muted">Đang tải trang quản trị...</p>
+  return <BrandLoader />
 }
 
 export const meta = () => noIndex('Quản trị')

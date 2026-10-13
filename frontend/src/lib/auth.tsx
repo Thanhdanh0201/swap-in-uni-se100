@@ -1,6 +1,7 @@
 import type { Session } from '@supabase/supabase-js'
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { Navigate, useLocation } from 'react-router'
+import { BrandLoader } from '../brand/Mascot'
 import { api } from './api'
 import { getSupabase } from './supabase'
 import type { Me } from './types'
@@ -58,7 +59,7 @@ export function RequireAuth({ children, roles }: { children: ReactNode; roles?: 
   const { loading, session, me } = useAuth()
   const location = useLocation()
 
-  if (loading) return <p className="container muted">Đang tải...</p>
+  if (loading) return <BrandLoader />
   if (!session) return <Navigate to={`/login?next=${encodeURIComponent(location.pathname + location.search)}`} replace />
   if (roles && (!me || !roles.includes(me.role))) return <Navigate to="/" replace />
   return children

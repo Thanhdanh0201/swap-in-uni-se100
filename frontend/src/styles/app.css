@@ -23,13 +23,6 @@
   white-space: nowrap;
 }
 .brand:hover { text-decoration: none; }
-.brand__mark {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  border-radius: var(--radius-control);
-  padding: 2px 8px;
-  font-size: var(--text-sm);
-}
 .header-search {
   flex: 1;
   display: flex;
@@ -176,7 +169,6 @@
   padding: var(--space-7) var(--space-4); background: var(--color-surface); border-radius: var(--radius-card);
 }
 .state__icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: var(--radius-pill); background: var(--color-primary-soft); color: var(--color-primary); }
-.state__icon--danger { background: var(--color-danger-soft); color: var(--color-danger); }
 .state__title { font-size: var(--text-lg); }
 .state .muted { max-width: 40ch; }
 .skeleton { background: linear-gradient(90deg, var(--color-surface-muted) 25%, var(--color-bg) 50%, var(--color-surface-muted) 75%); background-size: 200% 100%; animation: shimmer 1.2s ease-in-out infinite; }
@@ -222,6 +214,7 @@
 /* Trang /dev/ui */
 .kit { display: grid; gap: var(--space-6); }
 .kit__section { display: grid; gap: var(--space-3); }
+.kit__navy { padding: var(--space-3) var(--space-4); background: var(--color-nav-bg); border-radius: var(--radius-control); }
 .kit__row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
 .kit__layout { display: grid; grid-template-columns: 260px 1fr; gap: var(--space-5); align-items: start; }
 

@@ -3,6 +3,8 @@ import type { UploadFile } from 'antd'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { AntdShell } from '../../app/AntdShell'
+import { Logo } from '../../brand/Logo'
+import { BrandLoader, Mascot, MascotLockup, type MascotPose } from '../../brand/Mascot'
 import { ConditionTag } from '../../components/ConditionTag'
 import { FilterBar } from '../../components/FilterBar'
 import { ImageGallery } from '../../components/ImageGallery'
@@ -24,7 +26,7 @@ export async function clientLoader() {
 clientLoader.hydrate = true as const
 
 export function HydrateFallback() {
-  return <p className="container muted">Đang tải...</p>
+  return <BrandLoader />
 }
 
 export const meta = () => noIndex('UI kit')
@@ -93,6 +95,22 @@ export default function UiKit() {
           <h2>Chọn ảnh khi đăng bán (ImageUploader)</h2>
           <p className="muted">JPG/PNG/WebP, tối đa 5 MB, 6 ảnh. Bấm ảnh để xem trước.</p>
           <ImageUploader value={files} onChange={setFiles} />
+        </section>
+
+        <section className="kit__section">
+          <h2>Logo và mascot Mượn</h2>
+          <div className="kit__row">
+            <Logo />
+            <span className="kit__navy">
+              <Logo inverted />
+            </span>
+          </div>
+          <div className="kit__row">
+            {(['idle', 'walk', 'shake', 'jump'] as MascotPose[]).map((p) => (
+              <Mascot key={p} pose={p} />
+            ))}
+          </div>
+          <MascotLockup pose="walk" />
         </section>
 
         <section className="kit__section">

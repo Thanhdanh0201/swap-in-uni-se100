@@ -1,12 +1,12 @@
-import { MagnifyingGlass, WarningCircle } from '@phosphor-icons/react'
 import type { ReactNode } from 'react'
+import { Mascot } from '../brand/Mascot'
 
 // Trạng thái rỗng / lỗi / đang tải dùng chung cho mọi danh sách (DESIGN.md mục 3, nguyên tắc 6).
 
 export function EmptyState({ icon, title, description, action }: { icon?: ReactNode; title: string; description?: string; action?: ReactNode }) {
   return (
     <div className="state" role="status">
-      <span className="state__icon">{icon ?? <MagnifyingGlass size={32} aria-hidden />}</span>
+      {icon ? <span className="state__icon">{icon}</span> : <Mascot pose="idle" />}
       <h3 className="state__title">{title}</h3>
       {description && <p className="muted">{description}</p>}
       {action}
@@ -17,9 +17,7 @@ export function EmptyState({ icon, title, description, action }: { icon?: ReactN
 export function ErrorState({ title = 'Không tải được dữ liệu', description = 'Kiểm tra kết nối mạng rồi thử lại.', action }: { title?: string; description?: string; action?: ReactNode }) {
   return (
     <div className="state" role="alert">
-      <span className="state__icon state__icon--danger">
-        <WarningCircle size={32} aria-hidden />
-      </span>
+      <Mascot pose="shake" />
       <h3 className="state__title">{title}</h3>
       <p className="muted">{description}</p>
       {action ?? (

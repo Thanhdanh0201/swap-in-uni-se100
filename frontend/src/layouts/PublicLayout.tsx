@@ -1,7 +1,7 @@
 import { ChatCircleDots, MagnifyingGlass, Plus, ShieldCheck, SignOut, UserCircle } from '@phosphor-icons/react'
 import { Form, Link, NavLink, Outlet, useSearchParams } from 'react-router'
+import { Logo } from '../brand/Logo'
 import { useAuth } from '../lib/auth'
-import { SITE_NAME } from '../lib/seo'
 import { BottomNav } from './BottomNav'
 
 export default function PublicLayout() {
@@ -13,7 +13,7 @@ export default function PublicLayout() {
       <header className="site-header">
         <div className="container site-header__inner">
           <Link to="/" className="brand">
-            {SITE_NAME} <span className="brand__mark">UIT</span>
+            <Logo />
           </Link>
 
           <Form method="get" action="/" className="header-search" role="search">

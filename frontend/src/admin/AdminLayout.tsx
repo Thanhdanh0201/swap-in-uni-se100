@@ -2,8 +2,8 @@ import { Bell, ChartBar, Flag, Gauge, ListChecks, MapPin, SidebarSimple, SignOut
 import { Avatar, Button, ConfigProvider, Dropdown, Layout, Menu, Tooltip } from 'antd'
 import { useState, type ReactNode } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router'
+import { Logo } from '../brand/Logo'
 import { useAuth } from '../lib/auth'
-import { SITE_NAME } from '../lib/seo'
 import { adminTheme } from '../theme'
 import './admin.css'
 
@@ -39,7 +39,7 @@ export function AdminLayout({ base = '/admin', children }: { base?: string; chil
             <Button type="text" className="admin__icon-btn" icon={<SidebarSimple size={20} />} onClick={() => setCollapsed(!collapsed)} aria-label="Thu gọn menu" />
           </Tooltip>
           <Link to={base} className="admin__brand">
-            {SITE_NAME} <span className="admin__brand-tag">Quản trị</span>
+            <Logo inverted /> <span className="admin__brand-tag">Quản trị</span>
           </Link>
           <div className="admin__header-right">
             <Tooltip title="Thông báo">
