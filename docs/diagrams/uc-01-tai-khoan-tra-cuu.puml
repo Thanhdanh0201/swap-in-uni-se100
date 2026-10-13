@@ -3,12 +3,12 @@
 title Phân rã: Tài khoản & tra cứu
 
 actor "Khách" as Guest
-actor "Sinh viên" as Student
+actor "Thành viên" as Student
 actor "Google /\nSupabase Auth" as Auth <<hệ thống>>
 Guest <|-- Student
 
 rectangle "SwapInUni" {
-  usecase "UC01 Đăng nhập\nbằng email trường" as UC01
+  usecase "UC01 Đăng nhập" as UC01
   usecase "Đăng nhập bằng Google" as UC01a
   usecase "Đăng nhập bằng\nemail + mật khẩu" as UC01b
   usecase "UC02 Đăng xuất" as UC02

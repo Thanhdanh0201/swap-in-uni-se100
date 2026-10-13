@@ -12,6 +12,8 @@ public class Profiles
     public string? StudentId { get; set; }
     public string? Phone { get; set; }
     public string Role { get; set; } = "student";
+    /// <summary>Email @gm.uit.edu.vn / @uit.edu.vn. Chỉ trigger handle_new_user ghi (ADR-005).</summary>
+    public bool IsUitVerified { get; set; }
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }

@@ -80,7 +80,7 @@ Một số thứ EF không mô tả được: trigger trên `auth.users`, RLS po
    ```
 3. `database update` như bình thường.
 
-Danh sách SQL cần có cho dự án (trigger email trường, RLS, Realtime, bucket ảnh, seed danh mục): xem mục cuối [DATABASE.md](DATABASE.md).
+Danh sách SQL cần có cho dự án (trigger tạo profile + huy hiệu UIT, RLS, Realtime, bucket ảnh, seed danh mục): xem mục cuối [DATABASE.md](DATABASE.md).
 
 **Lưu ý:**
 - Mỗi bảng mới phải kèm `ENABLE ROW LEVEL SECURITY`, nếu không trình duyệt đọc được bảng đó bằng anon key.

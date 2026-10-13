@@ -38,6 +38,7 @@ erDiagram
         text student_id
         text phone
         text role "student | admin"
+        bool is_uit_verified "trigger gán theo domain email"
         bool is_active
         timestamptz created_at
         timestamptz updated_at
@@ -137,7 +138,6 @@ erDiagram
         text reject_reason
         uuid moderated_by
         timestamptz moderated_at
-        timestamptz expires_at "created_at + 30 ngày"
         timestamptz created_at
         timestamptz updated_at
     }
@@ -178,7 +178,7 @@ erDiagram
 
 1. `profiles.id` khóa ngoại tới `auth.users(id) ON DELETE CASCADE`.
 2. Trigger `on_auth_user_created` trên `auth.users`:
-   - Từ chối email ngoài `gm.uit.edu.vn` / `uit.edu.vn`.
+   - Không từ chối email nào; gán `is_uit_verified = true` nếu domain là `gm.uit.edu.vn` / `uit.edu.vn` (ADR-005).
    - Tự tạo `profiles` (lấy `full_name`, `avatar_url` từ metadata Google).
 3. `ENABLE ROW LEVEL SECURITY` cho **mọi** bảng: không có policy thì trình duyệt không đọc/ghi được qua anon key.
 4. Chỉ mở policy `SELECT` cho bảng frontend nghe Realtime:

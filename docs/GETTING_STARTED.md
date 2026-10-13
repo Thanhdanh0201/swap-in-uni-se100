@@ -41,7 +41,7 @@ Không cần cài `dotnet-ef` global: repo có sẵn bản local trong `backend/
 1. **URL Configuration**:
    - Site URL: `http://localhost:5174`
    - Redirect URLs: thêm `http://localhost:5174/login`
-2. **Google** (nên dùng: email trường là tài khoản Google):
+2. **Google** (email trường `@gm.uit.edu.vn` cũng là tài khoản Google):
    1. Vào [Google Cloud Console](https://console.cloud.google.com) → APIs & Services → Credentials → **Create OAuth client ID** (Web application).
    2. Authorized redirect URI: lấy dòng **Callback URL** hiện trong trang Supabase → Authentication → Providers → Google (dạng `https://<ref>.supabase.co/auth/v1/callback`).
    3. Dán Client ID và Client Secret vào Supabase, rồi bật provider Google.
@@ -102,7 +102,7 @@ Frontend proxy `/api` sang backend (xem `frontend/vite.config.ts`), nên khi dev
 1. Mở http://localhost:5174, bấm **Đăng nhập**, đăng nhập bằng email `@gm.uit.edu.vn`.
 2. Vào Supabase → Table Editor → `profiles`: phải có một dòng mới với email của bạn.
 3. Mở DevTools → Network, tải lại trang: request `GET /api/me` phải trả `200`.
-4. Đăng nhập bằng một Gmail cá nhân: phải bị từ chối (trigger chỉ chấp nhận email trường).
+4. Đăng nhập bằng email trường thì `profiles.is_uit_verified = true`; bằng Gmail cá nhân thì `false`.
 
 ### Cấp quyền admin cho thành viên nhóm
 

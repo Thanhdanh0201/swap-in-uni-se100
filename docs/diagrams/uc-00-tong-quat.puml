@@ -4,7 +4,7 @@
 title SwapInUni – Sơ đồ use case tổng quát
 
 actor "Khách" as Guest
-actor "Sinh viên" as Student
+actor "Thành viên" as Student
 actor "Người mua" as Buyer
 actor "Người bán" as Seller
 actor "Admin" as Admin
@@ -17,7 +17,7 @@ Student <|-- Admin
 
 rectangle "SwapInUni" {
   package "Tài khoản & tra cứu" {
-    usecase "UC01 Đăng nhập\nbằng email trường" as UC01
+    usecase "UC01 Đăng nhập" as UC01
     usecase "UC04 Xem danh sách\nsản phẩm" as UC04
     usecase "UC06 Xem chi tiết\nsản phẩm" as UC06
     usecase "UC07 Xem hồ sơ\nngười bán" as UC07

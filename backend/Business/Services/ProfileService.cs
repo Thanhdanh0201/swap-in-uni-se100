@@ -21,6 +21,6 @@ public class ProfileService : IProfileService
     {
         var p = await _uow.Profiles.GetByIdAsync(_actor.RequireActorId(), ct)
             ?? throw AppException.NotFound("Không tìm thấy hồ sơ.");
-        return new MeDto(p.Id, p.Email, p.FullName, p.AvatarUrl, p.StudentId, p.Phone, p.Role);
+        return new MeDto(p.Id, p.Email, p.FullName, p.AvatarUrl, p.StudentId, p.Phone, p.Role, p.IsUitVerified);
     }
 }

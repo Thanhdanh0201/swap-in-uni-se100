@@ -8,15 +8,14 @@
 - [x] Xác thực JWT Supabase (JWKS ES256, có dự phòng HS256 secret), `RbacMiddleware` nạp role từ `profiles`, `GlobalExceptionMiddleware` (ProblemDetails), `ApiResponse`, `AppException`.
 - [x] `BaseRepository<T>` + `UnitOfWork`; `DotEnv` đọc `backend/.env`; `dotnet-ef` cài dạng local tool.
 - [x] Endpoint mẫu `GET /api/me`.
-- [x] Frontend React Router v8 SSR + Ant Design, layout, trang chủ tạm, đăng nhập Supabase (Google `hd=gm.uit.edu.vn` / email + mật khẩu).
+- [x] Frontend React Router v8 SSR + Ant Design, layout, trang chủ tạm, đăng nhập Supabase (Google / email + mật khẩu).
 - [x] `AuthProvider`, `RequireAuth`, `api()` tự gắn Bearer token, `ClientOnly` cho trang cần đăng nhập, route `/admin` có giới hạn role.
 
 ## Giai đoạn 0 – Thống nhất nhóm (tuần 1)
 
 - [x] Chốt tên dự án: **SwapInUni** (đã đổi trong code và docs).
 - [x] Chốt phạm vi use case, vẽ use case diagram (tổng quát + 4 phân rã, `diagrams/png/`).
-- [ ] Xác nhận các giả định và câu hỏi còn mở ở mục 8 trong [USE_CASES.md](USE_CASES.md).
-- [ ] Duyệt ERD ở [DATABASE.md](DATABASE.md) và các quyết định ở [DECISIONS.md](DECISIONS.md).
+- [x] Chốt giả định và câu hỏi mở (mục 8 [USE_CASES.md](USE_CASES.md)), duyệt ERD và 8 ADR (SCRUM-12).
 - [ ] Chia việc, tạo board (Jira/Trello/GitHub Projects), quy ước branch và PR.
 - [ ] Viết SRS, làm wireframe Figma cho các màn chính.
 - [x] Tạo repo Git và push khung lên (github.com/Thanhdanh0201/swap-in-uni-se100).
@@ -29,7 +28,7 @@
   - Thêm `http://localhost:5174/login` vào Redirect URLs.
   - (Nếu dùng mật khẩu) tắt "Confirm email" khi dev.
 - [ ] Viết entity theo ERD, rồi chạy `dotnet ef migrations add InitialCreate -p Data -s Data -o Migrations`.
-- [ ] Viết migration `SupabaseSetup` (trigger email trường, RLS, publication Realtime, bucket ảnh, seed danh mục; xem DATABASE.md).
+- [ ] Viết migration `SupabaseSetup` (trigger tạo profile + gán huy hiệu UIT, RLS, publication Realtime, bucket ảnh, seed danh mục; xem DATABASE.md).
 - [ ] Chạy `dotnet ef database update`, kiểm tra đăng nhập tạo được `profiles`, gọi `/api/me` thành công.
 - [ ] Tự cấp quyền admin cho thành viên nhóm: `update profiles set role = 'admin' where email = '...'`.
 
@@ -64,7 +63,7 @@
 - [ ] UC10 Báo cáo: form chọn lý do. UC22 admin xử lý: bỏ qua, gỡ bài, khóa tài khoản.
 - [ ] UC23 Quản lý người dùng (khóa/mở khóa, cấp admin). UC24 Quản lý danh mục. UC25 Quản lý điểm giao nhận.
 - [ ] UC15 Đánh giá hai chiều sau giao dịch; UC07 hồ sơ người bán có điểm uy tín.
-- [ ] UC16/17 Tin cần mua (đăng, duyệt chung hàng đợi UC21, sửa, đóng, tự đóng sau 30 ngày); UC08 trang xem tin cần mua.
+- [ ] UC16/17 Tin cần mua (đăng, duyệt chung hàng đợi UC21, sửa, đóng, tối đa 5 tin mở); UC08 trang xem tin cần mua.
 - [ ] UC12 Yêu thích, UC03 Cập nhật hồ sơ.
 - [ ] Rate limit cho API đăng bài, gửi tin, báo cáo.
 

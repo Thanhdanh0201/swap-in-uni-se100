@@ -1,6 +1,6 @@
 # Use case – SwapInUni (Chợ đồ cũ sinh viên UIT)
 
-> Đã chốt phạm vi ngày 2026-10-11. Mục có ⭐ là 5 user story ban đầu.
+> Đã chốt phạm vi ngày 2026-10-11; chốt giả định và câu hỏi mở ngày 2026-10-13 (SCRUM-12). Mục có ⭐ là 5 user story ban đầu.
 > Độ ưu tiên: **P1** = bắt buộc cho MVP, **P2** = nên có, **P3** = làm nếu còn thời gian.
 
 ## 1. Tác nhân (Actor)
@@ -8,19 +8,19 @@
 | Tác nhân | Loại | Mô tả |
 |---|---|---|
 | **Khách** | Chính | Chưa đăng nhập. Xem, tìm sản phẩm và tin cần mua; không liên hệ được ai |
-| **Sinh viên** | Chính | Đã đăng nhập bằng email `@gm.uit.edu.vn`. Kế thừa Khách |
-| **Người mua** | Chính | Vai trò của Sinh viên khi mua: gửi yêu cầu mua, đăng tin cần mua, lưu yêu thích. Kế thừa Sinh viên |
-| **Người bán** | Chính | Vai trò của Sinh viên khi bán: đăng và quản lý bài, xử lý yêu cầu mua. Kế thừa Sinh viên |
-| **Admin** | Chính | Kiểm duyệt, xử lý báo cáo, quản lý người dùng, danh mục, điểm giao nhận. Kế thừa Sinh viên |
-| **Google / Supabase Auth** | Phụ (hệ thống ngoài) | Xác thực tài khoản email trường |
+| **Thành viên** | Chính | Đã đăng nhập, mọi email. Email trường (`@gm.uit.edu.vn`, `@uit.edu.vn`) có huy hiệu **Đã xác thực UIT**. Kế thừa Khách |
+| **Người mua** | Chính | Vai trò của Thành viên khi mua: gửi yêu cầu mua, đăng tin cần mua, lưu yêu thích. Kế thừa Thành viên |
+| **Người bán** | Chính | Vai trò của Thành viên khi bán: đăng và quản lý bài, xử lý yêu cầu mua. Kế thừa Thành viên |
+| **Admin** | Chính | Kiểm duyệt, xử lý báo cáo, quản lý người dùng, danh mục, điểm giao nhận. Kế thừa Thành viên |
+| **Google / Supabase Auth** | Phụ (hệ thống ngoài) | Xác thực tài khoản (Google hoặc email + mật khẩu) |
 
 ```
-Khách ◁── Sinh viên ◁──┬── Người mua
-                       ├── Người bán
-                       └── Admin
+Khách ◁── Thành viên ◁──┬── Người mua
+                        ├── Người bán
+                        └── Admin
 ```
 
-Một sinh viên có thể vừa là Người mua, vừa là Người bán. "Người mua" và "Người bán" là **vai trò** trong từng giao dịch, không phải 2 loại tài khoản khác nhau.
+Một thành viên có thể vừa là Người mua, vừa là Người bán. "Người mua" và "Người bán" là **vai trò** trong từng giao dịch, không phải 2 loại tài khoản khác nhau.
 
 **Đăng nhập là tiền điều kiện.** Diagram không vẽ `«include» Đăng nhập`. Use case nào cần đăng nhập thì ghi rõ ở phần tiền điều kiện trong đặc tả.
 
@@ -29,18 +29,18 @@ Một sinh viên có thể vừa là Người mua, vừa là Người bán. "Ng�
 | Mã | Use case | Tác nhân | Ưu tiên |
 |---|---|---|---|
 | **Tài khoản & tra cứu** — [uc-01](diagrams/png/uc-01-tai-khoan-tra-cuu.png) ||||
-| UC01 | Đăng nhập bằng email trường (Google hoặc email + mật khẩu) | Khách, *Auth* | P1 |
-| UC02 | Đăng xuất | Sinh viên | P1 |
-| UC03 | Cập nhật hồ sơ (họ tên, MSSV, SĐT, avatar) | Sinh viên | P2 |
+| UC01 | Đăng nhập (Google hoặc email + mật khẩu) | Khách, *Auth* | P1 |
+| UC02 | Đăng xuất | Thành viên | P1 |
+| UC03 | Cập nhật hồ sơ (họ tên, MSSV, SĐT, avatar) | Thành viên | P2 |
 | UC04 | Xem danh sách sản phẩm | Khách | P1 |
-| UC05 | ⭐ Tìm kiếm và lọc sản phẩm (tên, danh mục, giá, tình trạng; sắp xếp) — `«extend»` UC04 | Khách | P1 |
+| UC05 | ⭐ Tìm kiếm và lọc sản phẩm (tên, danh mục, giá, tình trạng, chỉ người bán UIT; sắp xếp) — `«extend»` UC04 | Khách | P1 |
 | UC06 | Xem chi tiết sản phẩm | Khách | P1 |
-| UC07 | Xem hồ sơ người bán (điểm đánh giá, bài đang bán) | Khách | P2 |
+| UC07 | Xem hồ sơ người bán (huy hiệu UIT, điểm đánh giá, bài đang bán) | Khách | P2 |
 | UC08 | Xem tin cần mua | Khách | P2 |
 | **Tương tác chung** ||||
-| UC09 | ⭐ Nhắn tin (realtime) giữa người mua và người bán | Sinh viên | P1 |
-| UC10 | ⭐ Báo cáo vi phạm (bài đăng, tin cần mua, người dùng) | Sinh viên | P1 |
-| UC11 | Xem thông báo | Sinh viên | P2 |
+| UC09 | ⭐ Nhắn tin (realtime) giữa người mua và người bán | Thành viên | P1 |
+| UC10 | ⭐ Báo cáo vi phạm (bài đăng, tin cần mua, người dùng) | Thành viên | P1 |
+| UC11 | Xem thông báo | Thành viên | P2 |
 | UC15 | Đánh giá sau giao dịch (hai chiều) | Người mua, Người bán | P2 |
 | **Mua** — [uc-02](diagrams/png/uc-02-mua.png) ||||
 | UC12 | Lưu / bỏ lưu yêu thích | Người mua | P3 |
@@ -103,7 +103,7 @@ Tác nhân, các use case chính và gói chức năng. Quan hệ include/extend
 
 | Lựa chọn | Lý do |
 |---|---|
-| Người mua/Người bán kế thừa Sinh viên | Diagram thể hiện rõ ai làm gì; vẫn đúng thực tế là một tài khoản làm được cả hai |
+| Người mua/Người bán kế thừa Thành viên | Diagram thể hiện rõ ai làm gì; vẫn đúng thực tế là một tài khoản làm được cả hai |
 | Không vẽ `«include» Đăng nhập` | Đăng nhập là điều kiện trước, không phải một bước bên trong use case. Vẽ ra thì mọi use case đều có mũi tên tới Đăng nhập, gây rối mà không thêm thông tin |
 | Gửi yêu cầu mua **không** `«extend»` Nhắn tin | Đây là chức năng độc lập, có trạng thái riêng. Việc nó được gửi từ màn hình chat là chi tiết giao diện, không phải quan hệ use case |
 | Thao tác con dùng `«extend»`, Tải ảnh dùng `«include»` | `include` = luôn xảy ra; `extend` = xảy ra có điều kiện hoặc tùy lựa chọn |
@@ -200,18 +200,17 @@ stateDiagram-v2
 
 ## 6. Đặc tả use case chính
 
-### UC01 – Đăng nhập bằng email trường
+### UC01 – Đăng nhập
 - **Tác nhân:** Khách (phụ: Google/Supabase Auth).
-- **Tiền điều kiện:** Có tài khoản email `@gm.uit.edu.vn` (hoặc `@uit.edu.vn`).
+- **Tiền điều kiện:** Có tài khoản Google hoặc một email bất kỳ.
 - **Luồng chính:**
   1. Khách bấm "Tiếp tục với Google".
-  2. Hệ thống chuyển sang Google; Google chỉ gợi ý các tài khoản thuộc domain trường.
-  3. Xác thực xong, nếu là lần đầu thì hệ thống tạo hồ sơ.
+  2. Hệ thống chuyển sang Google để chọn tài khoản.
+  3. Xác thực xong, nếu là lần đầu thì hệ thống tạo hồ sơ. Email `@gm.uit.edu.vn` / `@uit.edu.vn` được gắn huy hiệu **Đã xác thực UIT**.
   4. Hệ thống đưa người dùng về trang đang xem dở.
 - **Luồng thay thế:** 1a. Đăng nhập bằng email + mật khẩu (đăng ký lần đầu nếu chưa có tài khoản).
 - **Luồng ngoại lệ:**
-  - 3a. Email không thuộc domain trường: từ chối, báo "Chỉ chấp nhận email @gm.uit.edu.vn".
-  - 3b. Tài khoản đã bị khóa: báo lỗi, không cho thao tác.
+  - 3a. Tài khoản đã bị khóa: báo lỗi, không cho thao tác.
 - **Hậu điều kiện:** Có phiên đăng nhập, vai trò mặc định là `student`.
 
 ### UC05 – Tìm kiếm và lọc sản phẩm ⭐
@@ -225,7 +224,7 @@ stateDiagram-v2
 - **Ngoại lệ:** 2a. Không có kết quả: gợi ý bỏ bớt bộ lọc, và gợi ý đăng tin cần mua (UC16).
 
 ### UC09 – Nhắn tin ⭐
-- **Tác nhân:** Sinh viên (người mua và người bán).
+- **Tác nhân:** Thành viên (người mua và người bán).
 - **Tiền điều kiện:**
   - Đã đăng nhập.
   - Mở từ bài bán ở trạng thái `approved` hoặc `reserved`, hoặc từ tin cần mua ở trạng thái `open`.
@@ -237,7 +236,7 @@ stateDiagram-v2
 - **Quy tắc:** Chỉ hai người trong cuộc đọc được tin nhắn. Mỗi tin tối đa 2000 ký tự.
 
 ### UC10 – Báo cáo vi phạm ⭐
-- **Tác nhân:** Sinh viên.
+- **Tác nhân:** Thành viên.
 - **Tiền điều kiện:** Đã đăng nhập.
 - **Luồng chính:**
   1. Bấm "Báo cáo" trên bài bán, tin cần mua hoặc hồ sơ người dùng.
@@ -268,8 +267,7 @@ stateDiagram-v2
   3. Admin duyệt (UC21). Tin chuyển `open` và hiện ở trang "Tin cần mua" (UC08).
 - **Quy tắc:**
   - Không có ảnh.
-  - Tối đa 5 tin `open` cùng lúc mỗi người.
-  - Tin tự `closed` sau 30 ngày nếu người đăng không gia hạn.
+  - Tối đa 5 tin `open` cùng lúc mỗi người. Tin không tự hết hạn; người đăng tự đóng.
 - **Hậu điều kiện:** Người có món phù hợp có thể nhắn tin cho người đăng (UC09).
 
 ### UC18 – Đăng bài bán ⭐
@@ -333,30 +331,30 @@ stateDiagram-v2
 
 | Mã | Quy tắc |
 |---|---|
-| BR01 | Chỉ email `@gm.uit.edu.vn` (và `@uit.edu.vn` cho giảng viên/cán bộ) được đăng ký |
+| BR01 | Mọi email đăng ký được. Email `@gm.uit.edu.vn` / `@uit.edu.vn` tự động có huy hiệu **Đã xác thực UIT**, hiện trên bài, hồ sơ và khung chat; bộ lọc "Chỉ người bán UIT" ở trang tìm kiếm |
 | BR02 | Bài bán và tin cần mua (mới, vừa sửa, vừa hiện lại) đều phải chờ duyệt; chỉ `approved`/`reserved` (bài) và `open` (tin) hiện công khai |
 | BR03 | Không nhắn tin, gửi yêu cầu mua hay báo cáo bài/tin của chính mình |
 | BR04 | Mỗi bài tại một thời điểm có tối đa 1 yêu cầu mua `accepted`; mỗi người mua có tối đa 1 yêu cầu `pending` cho mỗi bài |
 | BR05 | Chỉ đánh giá được khi yêu cầu mua đã `completed`; mỗi bên đánh giá bên kia 1 lần, điểm từ 1 đến 5 |
 | BR06 | Tài khoản bị khóa không đăng nhập hay gọi API được; bài và tin của họ bị ẩn |
 | BR07 | Ảnh: tối đa 6 ảnh/bài, JPG/PNG/WebP, ≤ 5 MB/ảnh |
-| BR08 | Tin cần mua: tối đa 5 tin `open` mỗi người, tự đóng sau 30 ngày |
+| BR08 | Tin cần mua: tối đa 5 tin `open` mỗi người, không tự hết hạn |
 | BR09 | Hệ thống không xử lý thanh toán; gợi ý giao dịch tại điểm giao nhận an toàn và kiểm tra hàng trước khi trả tiền |
 
-## 8. Giả định đã dùng và câu hỏi còn mở
+## 8. Quyết định đã chốt
 
-**Đã chốt (2026-10-11):**
-- Phạm vi gồm cả: đánh giá, yêu thích, thống kê, tin cần mua, điểm giao nhận.
-- Người mua/Người bán là actor kế thừa Sinh viên.
-- Đăng nhập là tiền điều kiện.
+**Phạm vi (2026-10-11):** gồm cả đánh giá, yêu thích, thống kê, tin cần mua, điểm giao nhận. Người mua/Người bán là actor kế thừa Thành viên. Đăng nhập là tiền điều kiện.
 
-**Giả định tôi tự đặt, nhóm cần xác nhận:**
-1. Tin cần mua cũng phải qua kiểm duyệt (giống bài bán).
-2. Đánh giá **hai chiều**: người bán cũng đánh giá người mua, để hạn chế người hẹn rồi không đến.
-3. Giới hạn 5 tin cần mua đang mở mỗi người, tự đóng sau 30 ngày.
-4. Giữ cả 2 cách đăng nhập (Google + email/mật khẩu).
+**Giả định và câu hỏi mở (2026-10-13, SCRUM-12):**
 
-**Câu hỏi còn mở (không ảnh hưởng diagram):**
-1. Có cho giảng viên/cán bộ (`@uit.edu.vn`) tham gia không? Hiện đang cho phép.
-2. Bài bán có tự hết hạn hay cần "đẩy tin" lại không? Hiện **không** đưa vào phạm vi.
-3. Ai làm admin: chỉ nhóm mình, hay cấp quyền cho ban cán sự lớp?
+| Vấn đề | Quyết định |
+|---|---|
+| Ai được đăng ký | **Mọi email.** Email trường có huy hiệu "Đã xác thực UIT" (BR01, ADR-005) |
+| Tin cần mua có duyệt không | Có, chung hàng đợi kiểm duyệt (BR02) |
+| Đánh giá | Hai chiều (BR05) |
+| Giới hạn tin cần mua | Tối đa 5 tin đang mở, **không** tự hết hạn (BR08) |
+| Cách đăng nhập | Giữ cả Google và email + mật khẩu |
+| Bài bán tự hết hạn | Không |
+| Ai làm admin | Chỉ 4 thành viên nhóm |
+
+Không còn câu hỏi mở. Vấn đề mới phát sinh thì thêm vào bảng này kèm ngày quyết định.

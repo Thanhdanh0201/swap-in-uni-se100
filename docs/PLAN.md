@@ -9,7 +9,7 @@
 
 | Sprint | Thời gian | Mục tiêu | Demo cuối sprint | Mốc nộp |
 |---|---|---|---|---|
-| **S1** | 13/10 – 25/10 | Thiết kế xong, hạ tầng chạy, deploy được bản rỗng | Đăng nhập email trường trên link online, `/api/me` trả về hồ sơ | – |
+| **S1** | 13/10 – 25/10 | Thiết kế xong, hạ tầng chạy, deploy được bản rỗng | Đăng nhập trên link online, email trường có huy hiệu UIT, `/api/me` trả về hồ sơ | – |
 | **S2** | 26/10 – 08/11 | MVP đăng bán: đăng bài, duyệt, xem, tìm | Đăng bài, admin duyệt, người khác tìm thấy | **Báo cáo giữa kỳ** *(giả định ~08/11)* |
 | **S3** | 09/11 – 22/11 | Giao dịch: chat realtime, yêu cầu mua | Hai tài khoản chat realtime, gửi và chấp nhận yêu cầu mua | – |
 | **S4** | 23/11 – 06/12 | An toàn và cộng đồng: báo cáo, đánh giá, tin cần mua, quản trị | Báo cáo → admin gỡ bài/khóa tài khoản; đánh giá sau giao dịch | – |
@@ -45,7 +45,7 @@ Mỗi tính năng làm theo cặp **backend + frontend**: hai bên chốt DTO tr
 | Deploy bản rỗng: backend Docker (Render), frontend Node (Render/Vercel) | TV4 | Deploy sớm để tránh rủi ro cuối kỳ |
 | Kiểm tra đăng nhập end-to-end trên bản deploy | TV3 + TV4 | |
 
-**Xong khi:** đăng nhập bằng email trường trên link online; email ngoài trường bị từ chối; `profiles` có dữ liệu.
+**Xong khi:** đăng nhập trên link online; email trường có `is_uit_verified = true`, Gmail cá nhân thì `false`; `profiles` có dữ liệu.
 
 ### S2 · 26/10 – 08/11 · MVP đăng bán
 

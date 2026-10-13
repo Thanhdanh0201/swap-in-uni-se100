@@ -7,8 +7,6 @@ import { getSupabase } from '../../lib/supabase'
 
 export const meta = () => noIndex('Đăng nhập')
 
-const SCHOOL_DOMAIN = 'gm.uit.edu.vn'
-
 // Chỉ cho đường dẫn nội bộ, tránh open redirect qua ?next=https://...
 function safeNext(next: string | null) {
   return next && next.startsWith('/') && !next.startsWith('//') ? next : '/'
@@ -29,9 +27,8 @@ export default function Login() {
     if (session) navigate(next, { replace: true })
   }, [session, next, navigate])
 
-  // Trigger handle_new_user từ chối email ngoài trường: Supabase trả lỗi về URL (?error_description=...).
-  const urlError = params.get('error_description')
-  const shownError = error ?? (urlError && (urlError.includes('email') ? `Chỉ chấp nhận email @${SCHOOL_DOMAIN}.` : urlError))
+  // Lỗi đăng nhập Google (huỷ, tài khoản bị khóa...) Supabase trả về URL (?error_description=...).
+  const shownError = error ?? params.get('error_description')
 
   async function signInWithGoogle() {
     setError(undefined)
@@ -39,8 +36,7 @@ export default function Login() {
       provider: 'google',
       options: {
         redirectTo: `${window.location.origin}/login?next=${encodeURIComponent(next)}`,
-        // hd: Google chỉ gợi ý tài khoản thuộc domain trường. Chặn thật nằm ở trigger trong DB.
-        queryParams: { hd: SCHOOL_DOMAIN, prompt: 'select_account' },
+        queryParams: { prompt: 'select_account' },
       },
     })
     if (error) setError(error.message)
@@ -54,11 +50,6 @@ export default function Login() {
     setError(undefined)
     setInfo(undefined)
 
-    if (!email.endsWith(`@${SCHOOL_DOMAIN}`) && !email.endsWith('@uit.edu.vn')) {
-      setError(`Chỉ chấp nhận email @${SCHOOL_DOMAIN}.`)
-      return
-    }
-
     setBusy(true)
     const supabase = getSupabase()
     const { data, error } =
@@ -68,17 +59,17 @@ export default function Login() {
     setBusy(false)
 
     if (error) setError(error.message === 'Invalid login credentials' ? 'Sai email hoặc mật khẩu.' : error.message)
-    else if (mode === 'signup' && !data.session) setInfo('Đã gửi email xác nhận. Mở hộp thư trường để kích hoạt tài khoản.')
+    else if (mode === 'signup' && !data.session) setInfo('Đã gửi email xác nhận. Mở hộp thư để kích hoạt tài khoản.')
   }
 
   return (
     <div className="container auth">
       <div className="auth__card stack">
         <h1>{mode === 'signin' ? 'Đăng nhập' : 'Tạo tài khoản'}</h1>
-        <p className="muted">Dành cho sinh viên UIT, dùng email @{SCHOOL_DOMAIN}.</p>
+        <p className="muted">Dùng email @gm.uit.edu.vn để có huy hiệu “Đã xác thực UIT”.</p>
 
         <button type="button" className="btn btn--lg" onClick={signInWithGoogle}>
-          <GoogleLogo size={20} weight="bold" aria-hidden /> Tiếp tục với Google (email trường)
+          <GoogleLogo size={20} weight="bold" aria-hidden /> Tiếp tục với Google
         </button>
 
         <div className="divider"><span>hoặc</span></div>
@@ -92,7 +83,7 @@ export default function Login() {
           )}
           <label className="field">
             <span>Email</span>
-            <input name="email" type="email" required autoComplete="email" placeholder={`mssv@${SCHOOL_DOMAIN}`} />
+            <input name="email" type="email" required autoComplete="email" placeholder="mssv@gm.uit.edu.vn" />
           </label>
           <label className="field">
             <span>Mật khẩu</span>

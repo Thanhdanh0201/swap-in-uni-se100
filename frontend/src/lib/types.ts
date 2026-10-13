@@ -8,4 +8,5 @@ export type Me = {
   studentId: string | null
   phone: string | null
   role: 'student' | 'admin'
+  isUitVerified: boolean
 }

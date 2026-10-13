@@ -3,12 +3,12 @@
 > Đồ án SE100.
 
 Nền tảng để sinh viên UIT mua bán và trao đổi đồ cũ ngay trong trường: giáo trình, đồ điện tử, đồ ký túc xá, xe đạp...
-Chỉ tài khoản email trường (`@gm.uit.edu.vn`) được tham gia. Mọi bài đăng đều qua kiểm duyệt. Người mua và người bán nhắn tin trực tiếp để chốt giá và hẹn chỗ giao nhận.
+Ai cũng đăng ký được; tài khoản email trường (`@gm.uit.edu.vn`) có huy hiệu **Đã xác thực UIT** để người mua chọn người bán đáng tin. Mọi bài đăng đều qua kiểm duyệt. Người mua và người bán nhắn tin trực tiếp để chốt giá và hẹn chỗ giao nhận.
 
 ## Vì sao làm dự án này
 
 - Các nhóm Facebook/Zalo "pass đồ" bị trôi bài, khó tìm, không lọc được theo giá hay tình trạng, lại dễ gặp lừa đảo.
-- Người mua và người bán cùng trường nên giao nhận nhanh, không mất phí ship, và dễ tin nhau hơn khi đã xác thực bằng email trường.
+- Người mua và người bán cùng trường nên giao nhận nhanh, không mất phí ship, và dễ tin nhau hơn nhờ huy hiệu xác thực email trường.
 - Đồ cũ được dùng tiếp thay vì bỏ đi.
 
 ## Tổng quan tech stack
@@ -23,7 +23,7 @@ Stack dùng lại từ dự án **CRM UIT** để nhóm khỏi phải học và 
 | ORM | **EF Core** (Code-First) + Npgsql | Schema và migration quản lý bằng C# |
 | Validate | FluentValidation | Kiểm tra dữ liệu đầu vào |
 | Database | **Supabase Postgres** | Lưu dữ liệu chính |
-| Đăng nhập | **Supabase Auth** (Google OAuth với email trường, hoặc email + mật khẩu) | Frontend lấy JWT; backend xác thực JWT qua JWKS |
+| Đăng nhập | **Supabase Auth** (Google OAuth hoặc email + mật khẩu; email trường có huy hiệu UIT) | Frontend lấy JWT; backend xác thực JWT qua JWKS |
 | Ảnh | **Supabase Storage** (bucket `listing-images`) | Upload qua backend, đọc công khai |
 | Chat realtime | **Supabase Realtime** (`postgres_changes`) | Tin nhắn gửi qua API, trình duyệt nhận tin mới tức thì; RLS giới hạn người đọc |
 | Test | xUnit (backend), Vitest + Testing Library (frontend), oxlint | |
@@ -116,7 +116,7 @@ Khung đã chạy được, chưa có tính năng nghiệp vụ nào:
   - 3 unit test mẫu.
 - **Frontend**:
   - SSR chạy được, có layout và trang chủ tạm.
-  - Đăng nhập Supabase (Google kèm `hd=gm.uit.edu.vn`, hoặc email + mật khẩu).
+  - Đăng nhập Supabase (Google hoặc email + mật khẩu).
   - `AuthProvider` và `RequireAuth`; client `api()` tự gắn Bearer token.
   - Các route `/sell`, `/chat`, `/me/listings`, `/admin` đang trỏ về trang "Đang xây dựng".
 
