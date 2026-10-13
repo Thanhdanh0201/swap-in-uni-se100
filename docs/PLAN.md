@@ -38,7 +38,10 @@ Mỗi tính năng làm theo cặp **backend + frontend**: hai bên chốt DTO tr
 | Chốt giả định và câu hỏi mở (mục 8 USE_CASES), duyệt ERD, DECISIONS | Cả nhóm | Họp đầu sprint |
 | Tạo Jira board, quy ước branch/PR, bảo vệ nhánh `main` | TV1 | |
 | SRS: mô tả hệ thống, yêu cầu chức năng, phi chức năng | TV4 + TV2 | Dùng lại USE_CASES.md |
-| Wireframe Figma 6 màn: trang chủ, chi tiết, đăng bán, chat, bài của tôi, admin duyệt | TV3 | Dùng token màu/font hiện có |
+| Hướng thiết kế + UX guideline cho 2 hướng (`DESIGN.md`) | TV3 | SCRUM-54, bản nháp đã có |
+| Wireframe Figma: 5 màn người dùng + khung admin, duyệt bài | TV3 | SCRUM-15, theo DESIGN.md |
+| Hướng 1: khung Admin CMS + mẫu trang (Card, Table, Drawer, StatusTag, KPI) | TV4 | SCRUM-55 |
+| Hướng 2: UI kit người dùng + header, bottom nav mobile | TV3 + TV4 | SCRUM-56 |
 | Tạo project Supabase, Google OAuth, Redirect URLs | TV1 | GETTING_STARTED.md |
 | Entity + migration toàn bộ schema theo ERD, migration `SupabaseSetup` | TV1 + TV2 | Một người tạo migration tại một thời điểm |
 | Seed dữ liệu mẫu: danh mục, điểm giao nhận, 20 bài mẫu | TV2 | Để demo và test giao diện |

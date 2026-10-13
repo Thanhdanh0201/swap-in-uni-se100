@@ -19,6 +19,8 @@ Hai skill sau bật mặc định cho mọi phiên, không cần gọi lệnh. T
 
 - `/caveman-commit`, `/caveman-review`: viết commit message, review PR ngắn gọn.
 - `/ponytail-review` (một diff), `/ponytail-audit` (cả repo), `/ponytail-debt`, `/ponytail-help`.
-- `/design-taste-frontend`, `/minimalist-ui`, `/redesign-existing-projects`: khi làm hoặc làm lại giao diện. Giữ token màu, font trong `frontend/src/styles/tokens.css` và Ant Design theme ở `frontend/src/theme.ts`.
+- `/design-taste-frontend`, `/minimalist-ui`, `/redesign-existing-projects`: khi làm hoặc làm lại giao diện **người dùng**. Không dùng cho `/admin`.
+
+Mọi việc giao diện theo `docs/DESIGN.md` (hướng 1 Admin CMS, hướng 2 người dùng). Giữ token trong `frontend/src/styles/tokens.css` và theme Ant Design ở `frontend/src/theme.ts`.
 
 Nguồn và license các skill: `.claude/skills/SOURCES.md`.
