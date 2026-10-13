@@ -8,6 +8,8 @@ import '@fontsource/be-vietnam-pro/700.css'
 import './styles/tokens.css'
 import './styles/base.css'
 import './styles/app.css'
+import './styles/brand.css'
+import { Mascot } from './brand/Mascot'
 import { AuthProvider } from './lib/auth'
 import { seo } from './lib/seo'
 
@@ -44,6 +46,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const notFound = isRouteErrorResponse(error) && error.status === 404
   return (
     <main className="container stack" style={{ paddingBlock: 'var(--space-7)' }}>
+      <Mascot pose="shake" />
       <h1>{notFound ? 'Không tìm thấy trang' : 'Đã có lỗi xảy ra'}</h1>
       <p className="muted">{notFound ? 'Trang hoặc bài đăng không tồn tại, hoặc đã bị gỡ.' : 'Vui lòng tải lại trang hoặc thử lại sau.'}</p>
       <p><a href="/">Về trang chủ</a></p>

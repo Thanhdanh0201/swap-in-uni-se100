@@ -1,0 +1,24 @@
+/* Logo, mascot Mượn và màn tải (src/brand/). Ảnh nằm ở public/brand/. */
+
+.logo { display: inline-flex; align-items: center; gap: var(--space-2); }
+.logo img { flex: none; }
+
+.wordmark { font-weight: 700; letter-spacing: -0.01em; color: var(--color-text); white-space: nowrap; }
+.wordmark__in { color: var(--color-primary); }
+.logo--inverted .wordmark, .logo--inverted .wordmark__in { color: var(--color-on-primary); }
+.logo--inverted .wordmark__in { opacity: 0.75; }
+
+.mascot { display: inline-block; line-height: 0; }
+/* Ảnh tĩnh (giảm chuyển động) hẹp hơn ảnh động: giữ chiều cao, bề ngang tự co. */
+.mascot img { width: auto; }
+
+/* Mượn đứng trên chữ: chân chạm đỉnh chữ */
+.mascot-lockup { display: inline-flex; flex-direction: column; align-items: center; }
+.mascot-lockup .mascot { margin-bottom: -2px; }
+.mascot-lockup .wordmark { font-size: var(--text-3xl); line-height: 1; }
+
+.brand-loader {
+  display: grid; place-items: center; flex: 1; min-height: 60vh;
+  animation: brand-loader-in 0.2s 300ms both;
+}
+@keyframes brand-loader-in { from { opacity: 0; } to { opacity: 1; } }

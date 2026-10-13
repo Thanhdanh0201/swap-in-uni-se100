@@ -25,7 +25,25 @@ Nguồn duy nhất: `frontend/src/styles/tokens.css`. Ant Design đọc lại c�
 | Font | Be Vietnam Pro 400/500/600/700, hỗ trợ đủ dấu tiếng Việt |
 | Bo góc | Input, nút: 8px. Card, ảnh: 12px. Chip, huy hiệu: tròn hẳn. Không trộn kiểu khác |
 | Khoảng cách | Bước 4px (`--space-1` … `--space-8`) |
-| Icon | Chỉ dùng `@phosphor-icons/react` (đã cài), một độ đậm. Không vẽ SVG tay, không dùng emoji |
+| Icon | Chỉ dùng `@phosphor-icons/react` (đã cài), một độ đậm. Không vẽ SVG tay, không dùng emoji. Ngoại lệ duy nhất: logo và mascot ở `frontend/public/brand/` (mục 1a) |
+
+## 1a. Logo và mascot
+
+Nguồn: `frontend/public/brand/` (file ảnh, không vẽ bằng code), component ở `frontend/src/brand/`. Ảnh gốc và script render lại ở `docs/brand/`.
+
+| Thành phần | File | Dùng ở |
+|---|---|---|
+| Logo: mác giá + hai mũi tên ngược chiều, kèm chữ Swap**In**Uni (chữ là text, "In" màu primary) | `logo-mark.svg`, `logo-mark-inverted.svg` (nền navy) | Header người dùng, header admin, favicon |
+| Mascot **Mượn**: ốc mượn hồn, vỏ là mác giá của logo | `mascot-{idle,walk,shake,jump}.webp` (WebP động), `mascot.webp` (tĩnh) | Chỉ trang người dùng, không dùng trong `/admin` |
+
+| Tư thế | Dùng ở |
+|---|---|
+| `idle` nhún nhẹ | `EmptyState` khi không truyền icon |
+| `walk` đi ngang, đứng trên chữ SwapInUni (`MascotLockup`) | `BrandLoader`: chờ tải trang client-only, chờ đọc phiên đăng nhập. Hiện sau 300ms |
+| `shake` run | `ErrorState`, trang 404 / lỗi |
+| `jump` nhảy | Làm xong việc: đăng bài, giao dịch hoàn tất |
+
+Trang SSR không có màn tải toàn trang; danh sách vẫn dùng `Skeleton`. Khi `prefers-reduced-motion`, `<picture>` tự đổi sang `mascot.webp` tĩnh. Mascot và màn tải là chỗ duy nhất được có chuyển động lặp lại.
 
 Chế độ tối: **chưa làm trong MVP**. Mọi màu phải đi qua token để sau này thêm `[data-theme="dark"]` mà không phải sửa component.
 
@@ -142,6 +160,8 @@ Thông số định hướng (taste skill): `DESIGN_VARIANCE 4` (lưới đều,
 | `RemoteSelect` | 1 | `admin/RemoteSelect.tsx` | Chọn người dùng / danh mục bằng tìm kiếm từ server, giá trị là id |
 | `ImageUploader` | 2 | `components/ImageUploader.tsx` | Form đăng bán: lưới ảnh, xem trước, kiểm tra JPG/PNG/WebP ≤ 5 MB, tối đa 6 ảnh |
 | `KpiTile` | 1 | `admin/KpiTile.tsx` | Tổng quan |
+| `Logo`, `Wordmark` | 1 + 2 | `brand/Logo.tsx` | Header |
+| `Mascot`, `MascotLockup`, `BrandLoader` | 2 | `brand/Mascot.tsx` | Trạng thái rỗng / lỗi, 404, màn tải |
 
 Mọi component có trang xem thử: `/dev/ui` (người dùng) và `/dev/admin` (admin), dùng dữ liệu giả, chỉ bật khi `NODE_ENV !== 'production'`.
 

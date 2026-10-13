@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router'
+import { BrandLoader } from '../brand/Mascot'
 import { RequireAuth } from '../lib/auth'
 import { noIndex } from '../lib/seo'
 import { AntdShell } from './AntdShell'
@@ -11,7 +12,7 @@ export async function clientLoader() {
 clientLoader.hydrate = true as const
 
 export function HydrateFallback() {
-  return <p className="container muted">Đang tải...</p>
+  return <BrandLoader />
 }
 
 export const meta = () => noIndex('Tài khoản')
