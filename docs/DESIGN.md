@@ -1,6 +1,7 @@
 # Hướng thiết kế & UX
 
 > Chốt ngày 2026-10-13. Hai bề mặt, một bộ token. Mọi component mới phải theo file này; muốn đổi thì sửa file này trước.
+> Wireframe Figma: https://www.figma.com/design/rInWFVz102PhXf2LV9kQK4 (trang Foundations = token + component; Mobile, Desktop, Admin CMS = các màn chính).
 
 | | Hướng 1: Admin CMS | Hướng 2: Ứng dụng người dùng |
 |---|---|---|
@@ -106,7 +107,7 @@ Thông số định hướng (taste skill): `DESIGN_VARIANCE 4` (lưới đều,
 
 - **Header** dính trên cùng: logo, ô tìm kiếm (chiếm phần còn lại), trên desktop thêm nút "Đăng bán" và menu tài khoản.
 - **Thanh điều hướng dưới (mobile < 768px)** gồm 5 mục: Trang chủ · Tin cần mua · **Đăng bán** (nút giữa nổi bật) · Tin nhắn · Tài khoản. Có số chưa đọc trên Tin nhắn.
-- **Trang chủ:** desktop có bộ lọc dạng sidebar trái; mobile có hàng chip cuộn ngang (danh mục, giá, tình trạng, "Chỉ người bán UIT") và nút "Lọc" mở `Drawer` từ dưới lên.
+- **Trang chủ:** desktop có bộ lọc dạng sidebar trái; mobile có hàng chip cuộn ngang (danh mục, giá, tình trạng, "Chỉ người bán UIT") và nút "Lọc" mở bottom sheet từ dưới lên (`<dialog>` của trình duyệt, vì trang chủ là SSR không dùng antd).
 - **Trang chi tiết:** mobile hiện gallery vuốt ngang, thông tin, rồi thanh hành động dính đáy (giá + "Nhắn tin"). Desktop chia hai cột gallery | thông tin.
 
 ### Màn chính
@@ -132,10 +133,14 @@ Thông số định hướng (taste skill): `DESIGN_VARIANCE 4` (lưới đều,
 | `StatusTag` | 1 + 2 | `components/StatusTag.tsx` + `lib/status.ts` | Bài của tôi, admin |
 | `EmptyState`, `ErrorState`, `ListingCardSkeleton` | 2 | `components/States.tsx` | Mọi danh sách |
 | `ImageGallery` | 2 | `components/ImageGallery.tsx` | Chi tiết |
-| `FilterBar` (sidebar + chip + Drawer) | 2 | `components/FilterBar.tsx` | Trang chủ |
+| `FilterBar` (sidebar + chip + bottom sheet) | 2 | `components/FilterBar.tsx` | Trang chủ |
 | `BottomNav` | 2 | `layouts/BottomNav.tsx` | Mobile |
 | `AdminLayout` | 1 | `admin/AdminLayout.tsx` | `/admin/*` |
 | `AdminPage`, `DetailDrawer`, `ActionButtons` | 1 | `admin/*.tsx` | Mọi trang admin |
+| `FilterPanel` (+ `filters.ts`) | 1 | `admin/FilterPanel.tsx` | Bộ lọc khai báo bằng field (text, số, chọn, chọn nhiều, khoảng ngày), lọc ngay, lưu trên URL |
+| `CrudPage` | 1 | `admin/CrudPage.tsx` | Danh mục, Điểm giao nhận: bảng + tìm kiếm + Drawer thêm/sửa + xóa có xác nhận |
+| `RemoteSelect` | 1 | `admin/RemoteSelect.tsx` | Chọn người dùng / danh mục bằng tìm kiếm từ server, giá trị là id |
+| `ImageUploader` | 2 | `components/ImageUploader.tsx` | Form đăng bán: lưới ảnh, xem trước, kiểm tra JPG/PNG/WebP ≤ 5 MB, tối đa 6 ảnh |
 | `KpiTile` | 1 | `admin/KpiTile.tsx` | Tổng quan |
 
 Mọi component có trang xem thử: `/dev/ui` (người dùng) và `/dev/admin` (admin), dùng dữ liệu giả, chỉ bật khi `NODE_ENV !== 'production'`.

@@ -2,6 +2,7 @@ import { ChatCircleDots, MagnifyingGlass, Plus, ShieldCheck, SignOut, UserCircle
 import { Form, Link, NavLink, Outlet, useSearchParams } from 'react-router'
 import { useAuth } from '../lib/auth'
 import { SITE_NAME } from '../lib/seo'
+import { BottomNav } from './BottomNav'
 
 export default function PublicLayout() {
   const { loading, session, me, signOut } = useAuth()
@@ -21,17 +22,17 @@ export default function PublicLayout() {
           </Form>
 
           <nav className="header-nav">
-            <Link to="/sell" className="btn btn--primary">
+            <Link to="/sell" className="btn btn--primary hide-mobile">
               <Plus size={16} weight="bold" aria-hidden /> Đăng bán
             </Link>
             {/* Chờ đọc phiên ở trình duyệt xong mới hiện, tránh nháy "Đăng nhập" rồi đổi. */}
             {!loading &&
               (session ? (
                 <>
-                  <NavLink to="/chat" className="icon-link" title="Tin nhắn">
+                  <NavLink to="/chat" className="icon-link hide-mobile" title="Tin nhắn">
                     <ChatCircleDots size={22} aria-label="Tin nhắn" />
                   </NavLink>
-                  <NavLink to="/me/listings" className="icon-link" title="Bài đăng của tôi">
+                  <NavLink to="/me/listings" className="icon-link hide-mobile" title="Bài đăng của tôi">
                     <UserCircle size={22} aria-label="Bài đăng của tôi" />
                   </NavLink>
                   {me?.role === 'admin' && (
@@ -44,7 +45,7 @@ export default function PublicLayout() {
                   </button>
                 </>
               ) : (
-                <Link to="/login" className="btn">
+                <Link to="/login" className="btn hide-mobile">
                   Đăng nhập
                 </Link>
               ))}
@@ -57,6 +58,7 @@ export default function PublicLayout() {
       <footer className="site-footer">
         <div className="container muted">Chợ đồ cũ dành cho sinh viên UIT. Giao dịch trực tiếp, kiểm tra hàng trước khi trả tiền.</div>
       </footer>
+      <BottomNav />
     </>
   )
 }

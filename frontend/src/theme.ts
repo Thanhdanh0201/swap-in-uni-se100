@@ -16,3 +16,25 @@ export const antdTheme: ThemeConfig = {
     borderRadiusLG: 12,
   },
 }
+
+// Admin CMS (docs/DESIGN.md mục 2): header + sidebar navy, mục đang chọn nền trắng chữ xanh.
+const NAV_BG = '#0b2e6e' // --color-nav-bg
+
+export const adminTheme: ThemeConfig = {
+  ...antdTheme,
+  components: {
+    Layout: { headerBg: NAV_BG, headerHeight: 56, headerPadding: '0 16px', siderBg: NAV_BG, triggerBg: NAV_BG, bodyBg: '#f4f6fa' },
+    Menu: {
+      darkItemBg: NAV_BG,
+      darkSubMenuItemBg: NAV_BG,
+      darkPopupBg: NAV_BG,
+      darkItemColor: '#c7d4f0', // --color-nav-text
+      darkItemHoverBg: 'rgba(255, 255, 255, 0.08)',
+      darkItemSelectedBg: '#ffffff',
+      darkItemSelectedColor: '#0041d9',
+      itemBorderRadius: 8,
+      itemMarginInline: 8,
+    },
+    Table: { headerBg: '#f4f6fa' },
+  },
+}
