@@ -106,7 +106,7 @@ Thông số định hướng (taste skill): `DESIGN_VARIANCE 4` (lưới đều,
 
 - **Header** dính trên cùng: logo, ô tìm kiếm (chiếm phần còn lại), trên desktop thêm nút "Đăng bán" và menu tài khoản.
 - **Thanh điều hướng dưới (mobile < 768px)** gồm 5 mục: Trang chủ · Tin cần mua · **Đăng bán** (nút giữa nổi bật) · Tin nhắn · Tài khoản. Có số chưa đọc trên Tin nhắn.
-- **Trang chủ:** desktop có bộ lọc dạng sidebar trái; mobile có hàng chip cuộn ngang (danh mục, giá, tình trạng, "Chỉ người bán UIT") và nút "Lọc" mở `Drawer` từ dưới lên.
+- **Trang chủ:** desktop có bộ lọc dạng sidebar trái; mobile có hàng chip cuộn ngang (danh mục, giá, tình trạng, "Chỉ người bán UIT") và nút "Lọc" mở bottom sheet từ dưới lên (`<dialog>` của trình duyệt, vì trang chủ là SSR không dùng antd).
 - **Trang chi tiết:** mobile hiện gallery vuốt ngang, thông tin, rồi thanh hành động dính đáy (giá + "Nhắn tin"). Desktop chia hai cột gallery | thông tin.
 
 ### Màn chính
@@ -132,7 +132,7 @@ Thông số định hướng (taste skill): `DESIGN_VARIANCE 4` (lưới đều,
 | `StatusTag` | 1 + 2 | `components/StatusTag.tsx` + `lib/status.ts` | Bài của tôi, admin |
 | `EmptyState`, `ErrorState`, `ListingCardSkeleton` | 2 | `components/States.tsx` | Mọi danh sách |
 | `ImageGallery` | 2 | `components/ImageGallery.tsx` | Chi tiết |
-| `FilterBar` (sidebar + chip + Drawer) | 2 | `components/FilterBar.tsx` | Trang chủ |
+| `FilterBar` (sidebar + chip + bottom sheet) | 2 | `components/FilterBar.tsx` | Trang chủ |
 | `BottomNav` | 2 | `layouts/BottomNav.tsx` | Mobile |
 | `AdminLayout` | 1 | `admin/AdminLayout.tsx` | `/admin/*` |
 | `AdminPage`, `DetailDrawer`, `ActionButtons` | 1 | `admin/*.tsx` | Mọi trang admin |

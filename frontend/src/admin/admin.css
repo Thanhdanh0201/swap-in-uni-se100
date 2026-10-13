@@ -1,0 +1,22 @@
+/* Admin CMS (docs/DESIGN.md mục 2). Màu lấy từ token; Ant Design theme ở theme.ts (adminTheme). */
+.admin { min-height: 100vh; }
+.admin__header { position: sticky; top: 0; z-index: var(--z-header); display: flex; align-items: center; gap: var(--space-2); color: var(--color-on-primary); }
+.admin__brand { color: var(--color-on-primary); font-weight: 700; font-size: var(--text-lg); white-space: nowrap; }
+.admin__brand:hover { color: var(--color-on-primary); text-decoration: none; }
+.admin__brand-tag { margin-left: var(--space-2); padding: 2px 8px; border-radius: var(--radius-pill); background: var(--color-nav-active); font-size: var(--text-xs); font-weight: 500; }
+.admin__header-right { margin-left: auto; display: flex; align-items: center; gap: var(--space-2); }
+.admin .admin__icon-btn { color: var(--color-nav-text); }
+.admin .admin__icon-btn:hover { color: var(--color-on-primary) !important; background: var(--color-nav-hover) !important; }
+.admin__user { display: flex; align-items: center; gap: var(--space-2); padding: 4px 8px; border: 0; border-radius: var(--radius-control); background: none; color: var(--color-on-primary); cursor: pointer; }
+.admin__user:hover { background: var(--color-nav-hover); }
+.admin__content { padding: var(--space-4); min-width: 0; }
+.admin .ant-layout-sider { position: sticky; top: var(--admin-header-h); height: calc(100vh - var(--admin-header-h)); overflow-y: auto; }
+.admin .ant-menu-dark { padding-block: var(--space-2); }
+
+.admin-page__filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-3); margin-bottom: var(--space-4); }
+.kpi-tile .ant-card-body { display: flex; align-items: center; gap: var(--space-4); }
+.kpi-tile__icon { display: grid; place-items: center; width: 48px; height: 48px; flex: none; border-radius: var(--radius-card); background: var(--color-primary-soft); color: var(--color-primary); }
+
+@media (max-width: 767px) {
+  .admin__user-name, .admin__brand-tag { display: none; }
+}

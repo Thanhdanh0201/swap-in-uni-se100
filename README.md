@@ -99,7 +99,9 @@ SE100/
     │   ├── layouts/           ← PublicLayout (header, tìm kiếm)
     │   ├── pages/public/      ← trang SSR: Home, Login, (ListingDetail)
     │   ├── app/               ← trang client-only cần đăng nhập (ClientOnly, AntdShell, ComingSoon)
-    │   ├── admin/             ← trang quản trị (AdminRoute)
+    │   ├── admin/             ← Admin CMS: AdminLayout, AdminPage, DetailDrawer, ActionButtons, KpiTile
+    │   ├── components/        ← UI kit người dùng: ListingCard, PriceTag, UitBadge, StatusTag, States, ImageGallery, FilterBar
+    │   ├── pages/dev/         ← /dev/ui, /dev/admin: xem thử component với dữ liệu giả (chỉ khi dev)
     │   ├── lib/               ← api.ts, supabase.ts, auth.tsx, seo.ts, format.ts, types.ts
     │   └── styles/            ← tokens.css, base.css, app.css
     └── .env.example
