@@ -1,6 +1,7 @@
 # Hướng thiết kế & UX
 
 > Chốt ngày 2026-10-13. Hai bề mặt, một bộ token. Mọi component mới phải theo file này; muốn đổi thì sửa file này trước.
+> Wireframe Figma: https://www.figma.com/design/rInWFVz102PhXf2LV9kQK4 (trang Foundations = token + component; Mobile, Desktop, Admin CMS = các màn chính).
 
 | | Hướng 1: Admin CMS | Hướng 2: Ứng dụng người dùng |
 |---|---|---|
