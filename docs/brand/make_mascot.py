@@ -25,11 +25,14 @@ def magick(*args):
 
 def cut_parts(d):
     """Tách ảnh gốc thành các lớp cùng khung 594x705."""
+    # bỏ bóng đổ dưới chân (xám, độ đậm màu thấp) để nhấc chân không kéo theo bóng
+    src = f'{d}/master.png'
+    magick(MASTER, '-channel', 'A', '-fx', 'j >= 650 && max(max(r,g),b) - min(min(r,g),b) < 0.15 ? 0 : a', '+channel', src)
     def keep(name, *rects, soft=False):
         draw = ' '.join(f'rectangle {x0},{y0} {x1},{y1}' for x0, y0, x1, y1 in rects)
         # soft: làm mềm mép dọc (kernel Blur 1 chiều ngang) để đường nối với càng hoà vào nhau
         blur = ['-channel', 'A', '-morphology', 'Convolve', 'Blur:0x6', '+channel'] if soft else []
-        magick(MASTER, '(', '-size', '594x705', 'xc:none', '-fill', 'white', '-draw', draw, *blur, ')',
+        magick(src, '(', '-size', '594x705', 'xc:none', '-fill', 'white', '-draw', draw, *blur, ')',
                '-compose', 'DstIn', '-composite', f'{d}/{name}.png')
 
     # đáy càng thò xuống ngang chân: lấy thêm phần ngoài cột chân
